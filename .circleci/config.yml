@@ -22,6 +22,16 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      # run npm audit to check for vulnerabilities
+      - run:
+          name: "Check for vulnerabilities with npm audit"
+          command: npm audit
+
+      # (Optional) Attempt to fix vulnerabilities automatically
+      - run:
+          name: "Fix vulnerabilities with npm audit fix"
+          command: npm audit fix
+
       # run tests!
       - run: npm run test
       - run: npm run build
