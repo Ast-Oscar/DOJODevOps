@@ -51,6 +51,8 @@ export const CalculatorPage: React.FC<Props> = (props: Props) => {
     });
   };
 
+  const resetValues = () => { setValues({}); };
+
   const result = Object.keys(values).reduce((acc: number, itemName: string) => {
     return acc + values[itemName].kcal;
   }, 0);
@@ -80,6 +82,10 @@ export const CalculatorPage: React.FC<Props> = (props: Props) => {
           <div className={classes.buttonContainer}>
             <Button variant="contained" onClick={sendData(result)}>
               {result} Kcal
+            </Button>
+            <div style={{ width: 20 }} />
+            <Button variant="contained" onClick={() => resetValues()}>
+              Reset
             </Button>
           </div>
         </div>
